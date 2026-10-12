@@ -25,11 +25,3 @@ export function saveCredentials(credentials: Credentials) {
     return;
   }
 }
-
-export function clearCredentials() {
-  try {
-    sessionStorage.removeItem(KEY);
-  } catch {
-    return;
-  }
-}

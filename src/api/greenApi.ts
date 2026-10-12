@@ -1,4 +1,9 @@
-import type { Credentials, StateInstanceResponse } from '../types/greenApi';
+import type {
+  Credentials,
+  Notification,
+  SendMessageResponse,
+  StateInstanceResponse,
+} from '../types/greenApi';
 
 const API_URL = import.meta.env.VITE_GREEN_API_URL;
 
@@ -25,10 +30,48 @@ export async function getStateInstance(credentials: Credentials): Promise<StateI
   return res.json();
 }
 
-export async function sendAuthorizationPassword(
+export async function sendMessage(
   credentials: Credentials,
-): Promise<StateInstanceResponse> {
-  const res = await fetch(buildUrl(credentials, 'sendAuthorizationPassword'));
+  chatId: string,
+  message: string,
+): Promise<SendMessageResponse> {
+  const res = await fetch(buildUrl(credentials, 'sendMessage'), {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ chatId, message }),
+  });
+
+  if (!res.ok) {
+    throw new ApiError(res.status);
+  }
+
+  return res.json();
+}
+
+export async function receiveNotification(
+  credentials: Credentials,
+  signal?: AbortSignal,
+): Promise<Notification | null> {
+  const res = await fetch(`${buildUrl(credentials, 'receiveNotification')}?receiveTimeout=20`, {
+    signal,
+  });
+
+  if (!res.ok) {
+    throw new ApiError(res.status);
+  }
+
+  return res.json();
+}
+
+export async function deleteNotification(
+  credentials: Credentials,
+  receiptId: number,
+  signal?: AbortSignal,
+): Promise<{ result: boolean }> {
+  const res = await fetch(`${buildUrl(credentials, 'deleteNotification')}/${receiptId}`, {
+    method: 'DELETE',
+    signal,
+  });
 
   if (!res.ok) {
     throw new ApiError(res.status);

@@ -1,0 +1,84 @@
+.page {
+  display: flex;
+  height: 100vh;
+  height: 100dvh;
+  color: #fff;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  width: 395px;
+  border-right: 1px solid #26272d;
+  background: #17181c;
+  overflow-y: auto;
+}
+
+.sidebarHeader {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 16px 12px;
+}
+
+.title {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.newChat {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: #2a7cf6;
+  color: #fff;
+  cursor: pointer;
+}
+
+.newChat:hover {
+  background: #1f6ae0;
+}
+
+.main {
+  flex: 1;
+  min-width: 0;
+  background: #141414;
+}
+
+.placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 16px;
+  color: #8b8c94;
+  font-size: 15px;
+  text-align: center;
+}
+
+@media (max-width: 720px) {
+  .sidebar {
+    width: 100%;
+    border-right: none;
+  }
+
+  .main {
+    display: none;
+  }
+
+  .hasActive .sidebar {
+    display: none;
+  }
+
+  .hasActive .main {
+    display: block;
+  }
+}

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { ChatPage } from './pages/ChatPage';
 import { LoginPage } from './pages/LoginPage';
 import type { Credentials } from './types/greenApi';
 import { loadCredentials, saveCredentials } from './utils/credentialsStorage';
@@ -11,7 +12,7 @@ function App() {
     setCredentials(newCredentials);
   };
 
-  return credentials ? <h1>Чаты</h1> : <LoginPage onLogin={handleLogin} />;
+  return credentials ? <ChatPage credentials={credentials} /> : <LoginPage onLogin={handleLogin} />;
 }
 
 export default App;

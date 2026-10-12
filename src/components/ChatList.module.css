@@ -1,0 +1,66 @@
+.list {
+  margin: 0;
+  padding: 0 8px;
+  list-style: none;
+}
+
+.item {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  width: 100%;
+  padding: 10px 8px;
+  border: none;
+  border-radius: 12px;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.item:hover {
+  background: #1f2025;
+}
+
+.active,
+.active:hover {
+  background: #26272d;
+}
+
+.body {
+  flex: 1;
+  min-width: 0;
+}
+
+.top {
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.name {
+  overflow: hidden;
+  font-size: 15px;
+  font-weight: 600;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.time {
+  flex-shrink: 0;
+  color: #8b8c94;
+  font-size: 13px;
+}
+
+.preview {
+  display: -webkit-box;
+  margin: 2px 0 0;
+  overflow: hidden;
+  color: #a6a7ae;
+  font-size: 14px;
+  line-height: 1.4;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
